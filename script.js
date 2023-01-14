@@ -23,19 +23,30 @@ function displayBooks(){
     });
 }
 
+function shit(e){
+    let form = document.querySelector(".form");
+    if(e.target != form && e.target.parentNode != form){
+        hideForm();
+    }
+}
+
 function displayForm(){
     let form = document.createElement("form");
-    container.classList.toggle("blurred");
+    container.classList.toggle("blurred"); console.log("Blurred toggle");
     form.setAttribute("class", "form");
     body.appendChild(form);
 }
 
 function hideForm(){
     let form = document.querySelector(".form");
-    container.classList.toggle("blurred");
+    container.classList.toggle("blurred"); console.log("Blurred toggle");
     body.removeChild(form);
+    console.log("Form deleted");
+    document.removeEventListener("mouseup", shit);
 }
 
 newCard.addEventListener("click", () => {
     displayForm();
-})
+    document.addEventListener("mouseup", shit)
+});
+
