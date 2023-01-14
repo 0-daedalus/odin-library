@@ -1,4 +1,5 @@
 let myLibrary = [];
+let newCard = document.querySelector(".button-container.card");
 
 function Book(title, author, pages, isFinished){
     this.title = title;
@@ -16,6 +17,6 @@ function displayBooks(){
         let bookCard = document.createElement("div");
         bookCard.setAttribute("class", "card");
         let content = document.querySelector(".content");
-        content.appendChild(bookCard);
+        content.insertBefore(bookCard, newCard);
     });
 }

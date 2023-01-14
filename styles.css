@@ -3,21 +3,33 @@
     height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr;
+    background-color: #18181b;
 }
 .header{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 50px 100px 50px 100px;
+    background-color: #27272a;
+    border-radius: 0 0 10px 10px;
 }
 .content{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, 250px);
     gap: 50px;
     padding: 50px;
 }
 .card{
-    border: 1px solid blue;
-    border-radius: 10px;
+    border-radius: 30px;
     height: 20rem;
+}
+.button-container.card{
+    background: #b92b27;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom right, #0e4686, #831f1b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom right, #0e4686, #831f1b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: WHITE;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 4rem;
 }
