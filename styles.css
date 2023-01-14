@@ -33,3 +33,31 @@
     text-align: center;
     line-height: 4rem;
 }
+.card:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition-duration: 0.3s;
+}
+
+.blurred{
+    filter: blur(8px);
+    pointer-events: none;
+}
+
+.form-container{
+    width: 100vw;
+    height: 100vh;
+}
+
+.form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(50%, 500px, 99%);
+    height: min(80%, 99%);
+    border: 2px solid red;
+    z-index: 999;
+    filter: blur(0);
+}
+
