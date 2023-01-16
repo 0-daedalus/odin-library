@@ -39,6 +39,14 @@
     transition-duration: 0.3s;
 }
 
+.overlay{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 .blurred{
     filter: blur(8px);
     pointer-events: none;
@@ -54,10 +62,41 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(50%, 500px, 99%);
+    width: clamp(30%, 500px, 99%);
     height: min(80%, 99%);
-    border: 2px solid red;
+    border-radius: 30px;
     z-index: 999;
     filter: blur(0);
+    color: #18181b;
+    background-color: #a1a1aa;
+    padding: 5rem 7rem 5rem 7rem;
+}
+
+input{
+    display: block;
+    width: 100%;
+    height: 1.5rem;
+    border-radius: 10px;
+    background-color: #e4e4e7;
+    margin-bottom: 2rem;
+}
+.rad{
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+.radio{
+    display: flex;
+}
+input[type="radio"]{
+    display: inline;
+    width: auto;
+    margin: 0 0.5rem 0 0;
+}
+label[for="yes"], label[for="no"]{
+    font-weight: normal;
+}
+label{
+    line-height: 1.7rem;
+    font-weight: 600;
 }
 
