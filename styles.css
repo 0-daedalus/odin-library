@@ -100,3 +100,7 @@ label{
     font-weight: 600;
 }
 
+/*To be removed*/
+.book{
+    border: 1px solid green;
+}

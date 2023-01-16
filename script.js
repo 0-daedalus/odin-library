@@ -15,9 +15,14 @@ function storeBook(book){
 }
 
 function displayBooks(){
+    let curr = document.querySelectorAll(".book");
+    curr.forEach(book => {
+        book.remove();
+    })
     myLibrary.forEach(book => {
         let bookCard = document.createElement("div");
         bookCard.setAttribute("class", "card");
+        bookCard.classList.add("book");
         let content = document.querySelector(".content");
         content.insertBefore(bookCard, newCard);
     });
@@ -73,7 +78,8 @@ newCard.addEventListener("click", () => {
     pagesInp.setAttribute("max", "9999");
     pagesInp.classList.add("pagesinput");
     let submit = document.createElement("button");
-    submit.setAttribute("type", "submit");
+    submit.setAttribute("type", "button");
+    submit.setAttribute("onclick", "submitBook()");
     submit.classList.add("btn-submit");
     submit.innerText = "Submit";
     let finished = document.createElement("label");
@@ -117,4 +123,21 @@ newCard.addEventListener("click", () => {
     form.appendChild(submit);
     displayForm(form);
 });
+
+function submitBook(event){
+    let titleData = document.getElementById("title").value;
+    let authorData = document.getElementById("author_name").value;
+    let pagesData = document.getElementById("pages").value;
+    let isFinished = document.querySelector("input[type='radio']:checked").value;
+    let book = new Book(titleData, authorData, pagesData, isFinished);
+    storeBook(book);
+    let overlay = document.querySelector(".overlay");
+    container.classList.toggle("blurred");
+    overlay.parentNode.removeChild(overlay);
+    displayBooks();
+}
+
+function addBook(book){
+
+}
 
