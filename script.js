@@ -1,7 +1,6 @@
 let myLibrary = [];
 let newCard = document.querySelector(".button-container.card");
 let container = document.querySelector(".container");
-let body = document.querySelector("body");
 
 function Book(title, author, pages, isFinished){
     this.title = title;
@@ -19,10 +18,18 @@ function displayBooks(){
     curr.forEach(book => {
         book.remove();
     })
-    myLibrary.forEach(book => {
+    myLibrary.slice().reverse().forEach(book => {
         let bookCard = document.createElement("div");
         bookCard.setAttribute("class", "card");
         bookCard.classList.add("book");
+        let title = document.createElement("p");
+        title.innerText = book.title;
+        bookCard.appendChild(title);
+        let div = document.createElement("div");
+        div.classList.add("book-info");
+        let bookInfo = `by ${book.author} \n ${book.pages} pages`;
+        div.innerText += bookInfo;
+        bookCard.appendChild(div);
         let content = document.querySelector(".content");
         content.insertBefore(bookCard, newCard);
     });
@@ -124,7 +131,7 @@ newCard.addEventListener("click", () => {
     displayForm(form);
 });
 
-function submitBook(event){
+function submitBook(){
     let titleData = document.getElementById("title").value;
     let authorData = document.getElementById("author_name").value;
     let pagesData = document.getElementById("pages").value;
@@ -135,9 +142,5 @@ function submitBook(event){
     container.classList.toggle("blurred");
     overlay.parentNode.removeChild(overlay);
     displayBooks();
-}
-
-function addBook(book){
-
 }
 

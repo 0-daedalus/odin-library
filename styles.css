@@ -100,6 +100,25 @@ label{
     font-weight: 600;
 }
 
+
+.book{
+    padding: 10%;
+    color: white;
+}
+.book p{
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 0 1rem 0;
+    font-size: 1.7rem;
+}
+.book .book-info{
+    text-align: end;
+    font-weight: lighter;
+    font-size: 1rem;
+    line-height: 2rem;
+}
+
 /*To be removed*/
 .book{
     border: 1px solid green;
