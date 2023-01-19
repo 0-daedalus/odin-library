@@ -105,7 +105,7 @@ label{
     padding: 10%;
     color: white;
 }
-.book p{
+.title{
     text-align: center;
     font-weight: 600;
     text-transform: uppercase;
@@ -117,6 +117,14 @@ label{
     font-weight: lighter;
     font-size: 1rem;
     line-height: 2rem;
+}
+.book-info div{
+    display: flex;
+    justify-content: space-around;
+}
+.book-info label, .book-info p{
+    margin: 16px 0;
+    line-height: 1.7rem;
 }
 
 /*To be removed*/

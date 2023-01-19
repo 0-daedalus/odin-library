@@ -23,6 +23,7 @@ function displayBooks(){
         bookCard.setAttribute("class", "card");
         bookCard.classList.add("book");
         let title = document.createElement("p");
+        title.classList.add("title");
         title.innerText = book.title;
         bookCard.appendChild(title);
         let div = document.createElement("div");
@@ -30,6 +31,9 @@ function displayBooks(){
         let bookInfo = `by ${book.author} \n ${book.pages} pages`;
         div.innerText += bookInfo;
         bookCard.appendChild(div);
+        bookCard.addEventListener("click", function(){
+            showBookInfo(this, book);
+        })
         let content = document.querySelector(".content");
         content.insertBefore(bookCard, newCard);
     });
@@ -65,6 +69,7 @@ newCard.addEventListener("click", () => {
     let nameInp = document.createElement("input");
     nameInp.setAttribute("type", "text");
     nameInp.setAttribute("id", "title");
+    nameInp.required = true;
     nameInp.classList.add("nameinput");
     let authorLabel = document.createElement("label");
     authorLabel.setAttribute("for", "author_name");
@@ -73,6 +78,7 @@ newCard.addEventListener("click", () => {
     let authorInp = document.createElement("input");
     authorInp.setAttribute("type", "text");
     authorInp.setAttribute("id", "author_name");
+    authorInp.required = true;
     authorInp.classList.add("authorinput");
     let pagesLabel = document.createElement("label");
     pagesLabel.setAttribute("for", "pages");
@@ -83,6 +89,7 @@ newCard.addEventListener("click", () => {
     pagesInp.setAttribute("id", "pages");
     pagesInp.setAttribute("min", "1");
     pagesInp.setAttribute("max", "9999");
+    pagesInp.required = true;
     pagesInp.classList.add("pagesinput");
     let submit = document.createElement("button");
     submit.setAttribute("type", "button");
@@ -101,6 +108,7 @@ newCard.addEventListener("click", () => {
     yes.setAttribute("type", "radio");
     yes.setAttribute("name", "isFinished");
     yes.setAttribute("value", "yes");
+    yes.required = true;
     yes.setAttribute("id", "yes");
     let noLabel = document.createElement("label");
     noLabel.setAttribute("for", "no");
@@ -144,3 +152,24 @@ function submitBook(){
     displayBooks();
 }
 
+function showBookInfo(card, book){
+    console.log(book);
+    let form = document.createElement("form");
+    form.classList.add("form");
+    let title = document.createElement("h1");
+    title.innerText = book.title;
+    title.classList.add("title");
+    let info = document.createElement("div");
+    info.classList.add("book-info");
+    let author = document.createElement("p");
+    let authorLabel = document.createElement("label");
+    authorLabel.innerText = "Author of the book: ";
+    author.innerText = book.author;
+    let aDiv = document.createElement("div");
+    aDiv.appendChild(authorLabel);
+    aDiv.appendChild(author);
+    info.appendChild(aDiv);
+    form.appendChild(title);
+    form.appendChild(info);
+    displayForm(form);
+}
