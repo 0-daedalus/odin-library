@@ -193,5 +193,4 @@ label{
 
 .action.delete:hover{
     filter: invert(42%) sepia(93%) saturate(3088%) hue-rotate(338deg) brightness(100%) contrast(88%);
-    transition-duration: .5s;
 }
