@@ -35,10 +35,35 @@ function displayBooks(){
         div.classList.add("book-info");
         let bookInfo = `by ${book.author} \n ${book.pages} pages \n ${book.isFinished ? "Finished" : "Not finished"}`;
         div.innerText += bookInfo;
+        let footer = document.createElement("div");
+        footer.classList.add("card-footer");
+        let infoButton = document.createElement("a");
+        let infoImg = document.createElement("img");
+        infoImg.classList.add("action", "show");
+        infoImg.setAttribute("alt", "Show Book info");
+        infoImg.setAttribute("src", "./images/book-open-variant.svg");
+        infoButton.appendChild(infoImg);
+        infoButton.addEventListener("click", function(e){
+            e.stopPropagation();
+            showBookInfo(this, book);
+        });
+        let deleteButton = document.createElement("a");
+        let deleteImg = document.createElement("img");
+        deleteImg.classList.add("action", "delete");
+        deleteImg.setAttribute("alt", "Delete the book");
+        deleteImg.setAttribute("src", "./images/close-thick.svg");
+        deleteButton.appendChild(deleteImg);
+        deleteButton.addEventListener("click", function(e){
+            e.stopPropagation();
+            deleteBook(book);
+        });
+        footer.appendChild(infoButton);
+        footer.appendChild(deleteButton);
         bookCard.appendChild(div);
+        bookCard.appendChild(footer);
         bookCard.addEventListener("click", function(){
             showBookInfo(this, book);
-        })
+        });
         let content = document.querySelector(".content");
         content.insertBefore(bookCard, newCard);
     });
@@ -232,4 +257,10 @@ function showBookInfo(card, book){
     form.appendChild(title);
     form.appendChild(info);
     displayForm(form);
+}
+
+function deleteBook(book){
+    let index = myLibrary.indexOf(book);
+    myLibrary.splice(index, 1);
+    displayBooks();
 }

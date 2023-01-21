@@ -17,6 +17,11 @@
     background-color: #27272a;
     border-radius: 0 0 10px 10px;
 }
+.logo{
+    color: #e4e4e7;
+    font-size: xx-large;
+    font-weight: bold;
+}
 .content{
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
@@ -135,6 +140,11 @@ label{
     background-color: #27272a;
 }
 
+.card.book{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
 .book.Nemz38{
     box-shadow: 0 0 40px 15px green;
 }
@@ -163,4 +173,25 @@ label{
 .book-info label, .book-info p{
     margin: 16px 0;
     line-height: 1.7rem;
+}
+
+.card-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.action{
+    height: 3rem;
+}
+
+.action.show:hover{
+    filter: invert(78%) sepia(64%) saturate(5010%) hue-rotate(76deg) brightness(110%) contrast(135%);
+    transition-duration: .5s;
+}
+
+.action.delete:hover{
+    filter: invert(42%) sepia(93%) saturate(3088%) hue-rotate(338deg) brightness(100%) contrast(88%);
+    transition-duration: .5s;
 }
