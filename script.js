@@ -1,3 +1,4 @@
+'use strict'
 let myLibrary = [];
 let newCard = document.querySelector(".button-container.card");
 let container = document.querySelector(".container");
@@ -100,7 +101,9 @@ newCard.addEventListener("click", () => {
     pagesInp.classList.add("pagesinput");
     let submit = document.createElement("button");
     submit.setAttribute("type", "button");
-    submit.setAttribute("onclick", "submitBook()");
+    submit.addEventListener("click", function(){
+        submitBook();
+    })
     submit.classList.add("btn-submit");
     submit.innerText = "Submit";
     let finished = document.createElement("label");
@@ -165,11 +168,11 @@ function submitBook(){
 }
 
 function updateBook(book){
-    let isFinished = document.querySelectorAll("input[type='checkbox']:checked");
+    let isFinished = document.querySelector("input[type='checkbox']:checked");
+    console.log(isFinished);
     if(isFinished){
         book.isFinished = true;
     }
-    else book.isFinished = false;
     let overlay = document.querySelector(".overlay");
     container.classList.toggle("blurred");
     overlay.parentNode.removeChild(overlay);
