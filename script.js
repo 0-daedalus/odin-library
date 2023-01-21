@@ -22,13 +22,17 @@ function displayBooks(){
         let bookCard = document.createElement("div");
         bookCard.setAttribute("class", "card");
         bookCard.classList.add("book");
+        if(book.isFinished){
+            bookCard.classList.add("Nemz38");
+        }
+        else bookCard.classList.add("Kez");
         let title = document.createElement("p");
         title.classList.add("title");
         title.innerText = book.title;
         bookCard.appendChild(title);
         let div = document.createElement("div");
         div.classList.add("book-info");
-        let bookInfo = `by ${book.author} \n ${book.pages} pages`;
+        let bookInfo = `by ${book.author} \n ${book.pages} pages \n ${book.isFinished ? "Finished" : "Not finished"}`;
         div.innerText += bookInfo;
         bookCard.appendChild(div);
         bookCard.addEventListener("click", function(){
@@ -46,8 +50,11 @@ function displayForm(form) {
     let overlay = document.createElement("div");
     overlay.classList.add("overlay");
     container.classList.toggle("blurred");
+    let bg = document.createElement("div");
+    bg.classList.add("form-bg");
     // Add the form to the overlay div
     overlay.appendChild(form);
+    form.appendChild(bg);
     // Add the overlay div to the body
     body.appendChild(overlay);
     overlay.addEventListener("click", (e) => {
@@ -107,7 +114,7 @@ newCard.addEventListener("click", () => {
     let yes = document.createElement("input");
     yes.setAttribute("type", "radio");
     yes.setAttribute("name", "isFinished");
-    yes.setAttribute("value", "yes");
+    yes.setAttribute("value", "true");
     yes.required = true;
     yes.setAttribute("id", "yes");
     let noLabel = document.createElement("label");
@@ -116,7 +123,7 @@ newCard.addEventListener("click", () => {
     let nah = document.createElement("input");
     nah.setAttribute("type", "radio");
     nah.setAttribute("name", "isFinished");
-    nah.setAttribute("value", "no");
+    nah.setAttribute("value", "false");
     nah.setAttribute("id", "no");
     let div1 = document.createElement("div");
     div1.classList.add("radio");
@@ -143,9 +150,26 @@ function submitBook(){
     let titleData = document.getElementById("title").value;
     let authorData = document.getElementById("author_name").value;
     let pagesData = document.getElementById("pages").value;
-    let isFinished = document.querySelector("input[type='radio']:checked").value;
+    let isFinished;
+    if(document.querySelector("input[type='radio']:checked").value === "true"){
+        isFinished = true;
+    }
+    else isFinished = false;
+    console.log(isFinished);
     let book = new Book(titleData, authorData, pagesData, isFinished);
     storeBook(book);
+    let overlay = document.querySelector(".overlay");
+    container.classList.toggle("blurred");
+    overlay.parentNode.removeChild(overlay);
+    displayBooks();
+}
+
+function updateBook(book){
+    let isFinished = document.querySelectorAll("input[type='checkbox']:checked");
+    if(isFinished){
+        book.isFinished = true;
+    }
+    else book.isFinished = false;
     let overlay = document.querySelector(".overlay");
     container.classList.toggle("blurred");
     overlay.parentNode.removeChild(overlay);
@@ -166,9 +190,42 @@ function showBookInfo(card, book){
     authorLabel.innerText = "Author of the book: ";
     author.innerText = book.author;
     let aDiv = document.createElement("div");
+    let pages = document.createElement("p");
+    let pagesLabel = document.createElement("label");
+    pagesLabel.innerText = "Number of pages: ";
+    pages.innerText = book.pages;
+    let pDiv = document.createElement("div");
+    let markLabel = document.createElement("label");
+    markLabel.innerText = "Mark as read:"
+    markLabel.setAttribute("for", "Nemz38");
+    let choice = document.createElement("input");
+    choice.setAttribute("type", "checkbox");
+    choice.setAttribute("name", "Nemz38");
+    choice.setAttribute("value", "true");
+    choice.setAttribute("id", "Nemz38");
+    let cDiv = document.createElement("div");
+    cDiv.classList.add("radio");
+    cDiv.setAttribute("for", "Nemz38");
+    let submit = document.createElement("button");
+    submit.setAttribute("type", "button");
+    submit.addEventListener("click", function() {
+        updateBook(book);
+    });
+    submit.classList.add("btn-submit");
+    submit.innerText = "Submit";
+    let sDiv = document.createElement("div");
+    sDiv.classList.add("submit");
     aDiv.appendChild(authorLabel);
     aDiv.appendChild(author);
+    pDiv.appendChild(pagesLabel);
+    pDiv.appendChild(pages);
+    cDiv.appendChild(markLabel);
+    cDiv.appendChild(choice);
+    sDiv.append(submit);
     info.appendChild(aDiv);
+    info.appendChild(pDiv);
+    info.appendChild(cDiv);
+    info.appendChild(sDiv);
     form.appendChild(title);
     form.appendChild(info);
     displayForm(form);
