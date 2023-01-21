@@ -184,11 +184,11 @@ label{
 
 .action{
     height: 3rem;
+    filter: invert(96%) sepia(5%) saturate(71%) hue-rotate(202deg) brightness(92%) contrast(101%);
 }
 
 .action.show:hover{
     filter: invert(78%) sepia(64%) saturate(5010%) hue-rotate(76deg) brightness(110%) contrast(135%);
-    transition-duration: .5s;
 }
 
 .action.delete:hover{
